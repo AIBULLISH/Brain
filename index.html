@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BRAINROT GAME</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #game {
+      text-align: center;
+    }
+
+    #word {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: shake 0.15s infinite;
+    }
+
+    #btn {
+      font-size: 24px;
+      padding: 15px 40px;
+      background: white;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 32px;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="game">
+  <div id="word">ARE YOU SIGMA?</div>
+  <button id="btn">CLICK</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  const words = [
+    "SIGMA",
+    "NPC",
+    "BRAINROT",
+    "MID",
+    "W",
+    "L",
+    "GYATT",
+    "SKULL"
+  ];
+
+  const targetWord = "SIGMA";
+  const wordEl = document.getElementById("word");
+  const resultEl = document.getElementById("result");
+  const btn = document.getElementById("btn");
+
+  let currentWord = "";
+  let interval = null;
+
+  function start() {
+    resultEl.textContent = "";
+    interval = setInterval(() => {
+      currentWord = words[Math.floor(Math.random() * words.length)];
+      wordEl.textContent = currentWord;
+    }, 120);
+  }
+
+  btn.onclick = () => {
+    clearInterval(interval);
+    if (currentWord === targetWord) {
+      resultEl.textContent = "BRAINROT CONFIRMED";
+    } else {
+      resultEl.textContent = "NOT SIGMA";
+    }
+    setTimeout(start, 1000);
+  };
+
+  start();
+</script>
+
+</body>
+</html>
